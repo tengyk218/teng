@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: zuul
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    #    password: 123456
+    timeout: 20000
+    # 如果使用的jedis 则将lettuce改成jedis即可
+    lettuce:
+      pool:
+        # 最大活跃链接数 默认8
+        max-active: 8
+        # 最大空闲连接数 默认8
+        max-idle: 8
+        # 最小空闲连接数 默认0
+        min-idle: 0
+
+server:
+  port: 8800
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7761/eureka
+#ribbon:
+#  MaxAutoRetries: 2
+#  MaxAutoRetriesNextServer: 0
+
+#zuul:
+#  retryable: true
+
+routes:
+  auth:
+    path: /auth/**
+    sensitiveHeaders:
+    serviceId: auth
+add-proxy-headers: true
+
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: demo
+
+logging:
+  level:
+    org:
+      springframework: DEBUG

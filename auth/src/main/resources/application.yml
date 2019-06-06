@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: auth
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.2.202/zcpd_test_new
+    username: root
+    password: root
+  redis:
+    host: 127.0.0.1
+    port: 6379
+#    password: 123456
+    timeout: 20000
+    # 如果使用的jedis 则将lettuce改成jedis即可
+    lettuce:
+      pool:
+        # 最大活跃链接数 默认8
+        max-active: 8
+        # 最大空闲连接数 默认8
+        max-idle: 8
+        # 最小空闲连接数 默认0
+        min-idle: 0
+
+server:
+  port: 8040
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7761/eureka
+#management:
+#  security:
+#    enabled: false
+
+#security:
+#  oauth2:
+#    resource:
+#      filter-order: 3
+
+#logging:
+#  level:
+#    org:
+#      springframework: DEBUG
